@@ -1,0 +1,12 @@
+language: bash
+
+sudo: false
+
+before_install:
+    - sudo apt-get -qq update
+    - sudo apt-get install -y realpath shellcheck
+
+script:
+    - tests/tests.sh
+    - shellcheck check-trailing-whitespaces
+    - shellcheck tests/tests.sh

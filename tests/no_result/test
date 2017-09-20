@@ -1,0 +1,4 @@
+--STATUS-CODE--
+0
+--OUTPUT--
+\e[0;32mNo trailing whitespaces detected.\e[0m
