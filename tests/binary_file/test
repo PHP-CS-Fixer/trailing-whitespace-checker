@@ -1,0 +1,6 @@
+--STATUS-CODE--
+3
+--OUTPUT--
+\e[97;41mTrailing whitespaces detected:\e[0m
+\e[0;31m - in \e[0;33mfile2.php\e[0;31m at line \e[0;33m4
+   \e[0;31m>\e[0m line with spaces\e[41;1m   \e[0m
