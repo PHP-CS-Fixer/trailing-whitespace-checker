@@ -1,6 +1,6 @@
 #!/bin/bash
 
-files_with_trailing_spaces=$(find . -type f -exec grep -EIHn "\\s$" {} \; | sort -fh)
+files_with_trailing_spaces=$(find . -type f -not -path "./.git/*" -not -path "./.svn/*" -exec grep -EIHn "\\s$" {} \; | sort -fh)
 
 if [[ ${files_with_trailing_spaces} ]]
 then
