@@ -9,7 +9,7 @@ run_test() {
     cd "${1}files" || return 3
     output=$(../../../check-trailing-whitespaces)
     status_code="$?"
-    cd ../.. || return 3
+    cd "$OLDPWD" || return 3
 
     if [ "${status_code}" != "${expected_status_code}" ]
     then
@@ -31,6 +31,13 @@ run_test() {
     return 0
 }
 
+# setup
+# Git does not allow to track a .git directory so we copy .svn
+rm -rf tests/default_ignored_paths/files/.git tests/default_ignored_paths/files/directory/.git
+cp -r tests/default_ignored_paths/files/.svn tests/default_ignored_paths/files/.git
+cp -r tests/default_ignored_paths/files/directory/.svn tests/default_ignored_paths/files/directory/.git
+
+# run tests
 i=0
 failures=0
 for test_case in "$(dirname "$(realpath "$0")")"/*/
@@ -49,6 +56,10 @@ do
     ((++i))
 done
 
+# clean
+rm -rf tests/default_ignored_paths/files/.git tests/default_ignored_paths/files/directory/.git
+
+# exit
 if [ "${failures}" -ne 0 ]
 then
     exit 3
